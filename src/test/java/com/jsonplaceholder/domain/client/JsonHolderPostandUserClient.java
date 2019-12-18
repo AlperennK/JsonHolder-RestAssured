@@ -6,7 +6,6 @@ import com.jsonplaceholder.core.configuration.ConfigParser;
 import com.jsonplaceholder.domain.response.CommentResponse;
 import com.jsonplaceholder.domain.response.PostResponse;
 import com.jsonplaceholder.domain.response.UserResponse;
-import gherkin.lexer.En;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,6 @@ public class JsonHolderPostandUserClient extends JsonHolderClient {
         return get(url + EndPoint.GET_USERS + Integer.toString(id));
 
     }
-    //Try taking off new declaration and change for loop
     public ArrayList<String> getPostsForAUser(String userId){
         postIdsArr=new ArrayList<String>();
         postsArrResponse =getPosts(url + EndPoint.GET_POSTS, userId);
@@ -37,7 +35,6 @@ public class JsonHolderPostandUserClient extends JsonHolderClient {
         }
         return postIdsArr;
     }
-    // Use getAllCommentsForAPost
     public ArrayList<String> getEmailsForAPost(String postId){
         emailsForAPost=new ArrayList<String>();
         commentsArrResponse =getComments(url+EndPoint.GET_COMMENTS, postId);
@@ -49,14 +46,8 @@ public class JsonHolderPostandUserClient extends JsonHolderClient {
     }
 
 
-//    public ArrayList<CommentResponse> getAllCommentsForAPost(String postId){
-//        commentResponseArrayList= Arrays.asList(getComments(url+EndPoint.GET_COMMENTS, postId));
-//        return commentResponseArrayList;
-//    }
 
 
-
-    //This returns all the email addresses for all the comments made for a user's posts
 
     public int numberOfUsers(){
         return getAllUsers(url+ EndPoint.GET_USERS).length;
@@ -64,7 +55,6 @@ public class JsonHolderPostandUserClient extends JsonHolderClient {
     public ArrayList<String> getEmailsForAllCommentsForAUser(String userId){
         postIdsArr=getPostsForAUser(userId);
         emailsForAllCommentsForAUser=new ArrayList<String>();
-        //Might need to change
         for(String postId : postIdsArr){
             emailsForAllCommentsForAUser.addAll(getEmailsForAPost(postId));
         }

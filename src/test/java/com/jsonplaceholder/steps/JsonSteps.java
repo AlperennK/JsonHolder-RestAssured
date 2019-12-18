@@ -38,7 +38,6 @@ public class JsonSteps {
 
     @Given("^I have userId for \"([^\"]*)\"$")
     public void i_have_userId_for_a_specific_user(String name) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         user=jsonHolderService.findUserWithUserName(name);
         userId=user.getId();
         Assert.assertEquals("3",userId);
@@ -51,7 +50,6 @@ public class JsonSteps {
 
     @Then("^I should get \"([^\"]*)\" emails totally$")
     public void i_should_get_all_postIds_for_that_userId(String totalemails) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         allEmails=jsonHolderService.fetchAllEmailsForAllCommentsForAUser(userId);
         Assert.assertEquals(Integer.parseInt(totalemails),allEmails.size());
     }
@@ -60,14 +58,12 @@ public class JsonSteps {
 
     @When("^I check all email addresses$")
     public void i_check_all_email_addresses() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         allEmails=jsonHolderService.fetchAllEmailsForAllCommentsForAUser(userId);
         areAllofTheEmailsValid=jsonHolderService.verifyAllEmails(allEmails);
     }
 
     @Then("^I should have all email addreses in valid format$")
     public void i_should_have_all_email_addreses_in_valid_format() throws Throwable {
-        // Write code here that turns the phrase above into concrAcidete actions
         Assert.assertEquals(areAllofTheEmailsValid,true);
     }
 
